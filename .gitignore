@@ -2,5 +2,6 @@
 .idea
 
 /notebooks/EXPERIMENTS.ipynb
+/notebooks/.ipynb_checkpoints
 
 /data/dataset
