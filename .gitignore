@@ -5,3 +5,5 @@
 /notebooks/.ipynb_checkpoints
 
 /data/dataset
+
+/test/code/.cache

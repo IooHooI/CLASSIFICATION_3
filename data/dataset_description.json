@@ -1,4 +1,4 @@
 {
-  "dataset_location": "link",
-  "timeout": 10
+  "dataset": "home-credit-default-risk",
+  "local_path": "../../data/dataset"
 }
