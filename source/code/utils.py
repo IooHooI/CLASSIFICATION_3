@@ -1,3 +1,4 @@
+import pickle
 
 
 def read_columns(path):
@@ -13,3 +14,13 @@ def pos(arr):
 
 def neg(arr):
     return len(arr) - sum(arr)
+
+
+def save_obj(obj, path):
+    with open(path, 'wb') as f:
+        pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
+
+
+def load_obj(path):
+    with open(path, 'rb') as f:
+        return pickle.load(f)
