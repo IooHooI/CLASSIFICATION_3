@@ -1,4 +1,7 @@
 import pickle
+from imblearn.pipeline import Pipeline
+from source.code.ItemSelector import ItemSelector
+from source.code.MyLabelBinarizer import MyLabelBinarizer
 
 
 def read_columns(path):
@@ -24,3 +27,10 @@ def save_obj(obj, path):
 def load_obj(path):
     with open(path, 'rb') as f:
         return pickle.load(f)
+
+
+def generate_pipeline(column):
+    return (column, Pipeline([
+        ('choose', ItemSelector(column)),
+        ('binarize', MyLabelBinarizer())
+    ]))
