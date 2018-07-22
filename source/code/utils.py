@@ -4,13 +4,6 @@ from source.code.ItemSelector import ItemSelector
 from source.code.MyLabelBinarizer import MyLabelBinarizer
 
 
-def read_columns(path):
-    with open(path, 'r') as file:
-        columns = file.readlines()
-        columns = list(map(str.rstrip, columns))
-    return columns
-
-
 def pos(arr):
     return sum(arr)
 
@@ -34,3 +27,16 @@ def generate_pipeline(column):
         ('choose', ItemSelector(column)),
         ('binarize', MyLabelBinarizer())
     ]))
+
+
+def generate_features_names(bin_features, cat_features, num_features):
+    res = []
+    res += bin_features
+    for cat_feature in cat_features:
+        res += list(map(lambda x: cat_feature + '_' + str(x), range(cat_features[cat_feature])))
+    res += num_features
+    return res
+
+
+def generate_cat_feature_counts(df, cat_features):
+    return dict(zip(cat_features, list(map(lambda cat: df[cat].nunique(), cat_features))))
