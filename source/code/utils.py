@@ -31,10 +31,13 @@ def generate_pipeline(column):
 
 def generate_features_names(bin_features, cat_features, num_features):
     res = []
-    res += bin_features
-    for cat_feature in cat_features:
-        res += list(map(lambda x: cat_feature + '_' + str(x), range(cat_features[cat_feature])))
-    res += num_features
+    if len(bin_features) > 0:
+        res += bin_features
+    if len(cat_features) > 0:
+        for cat_feature in cat_features:
+            res += list(map(lambda x: cat_feature + '_' + str(x), range(cat_features[cat_feature])))
+    if len(num_features) > 0:
+        res += num_features
     return res
 
 
