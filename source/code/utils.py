@@ -2,6 +2,7 @@ import pickle
 from imblearn.pipeline import Pipeline
 from source.code.ItemSelector import ItemSelector
 from source.code.MyLabelBinarizer import MyLabelBinarizer
+from source.code.MyLabelEncoder import MyLabelEncoder
 
 
 def pos(arr):
@@ -22,10 +23,17 @@ def load_obj(path):
         return pickle.load(f)
 
 
-def generate_pipeline(column):
+def generate_binarized_pipeline(column):
     return (column, Pipeline([
         ('choose', ItemSelector(column)),
         ('binarize', MyLabelBinarizer())
+    ]))
+
+
+def generate_encoded_pipeline(column):
+    return (column, Pipeline([
+        ('choose', ItemSelector(column)),
+        ('encode', MyLabelEncoder())
     ]))
 
 
